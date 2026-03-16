@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Avraham Intelligence 🕊️</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <style>
+        /* AVRAHAM INTEL CORE DESIGN SYSTEM
+           Refined by Gemini for Supreme Root Mamat Ibrahim
+        */
+        :root {
+            --bg: #fbfbfd;
+            --surface: rgba(255, 255, 255, 0.85);
+            --text-main: #1d1d1f;
+            --text-sub: #86868b;
+            --accent: #0071e3;
+            --border: rgba(0, 0, 0, 0.08);
+            --success: #24b47e;
+            --warning: #f5a623;
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow: hidden; /* Animasi transisi akan handle scroll */
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND ORBS (SUBTLE BLURRY EFFECT) --- */
+        .orb {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: orbFloat 20s infinite alternate var(--ease);
+        }
+        .orb-1 { background: #d0e1f9; top: -100px; left: -100px; }
+        .orb-2 { background: #f9e1d0; bottom: -100px; right: -100px; animation-delay: -5s; }
+
+        @keyframes orbFloat {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(50px, 100px) scale(1.1); }
+        }
+
+        /* --- APP WRAPPER --- */
+        .app-shell {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+        }
+
+        /* --- ENTRY SECTION (LOGIN) --- */
+        #entry-section {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            text-align: center;
+            will-change: transform, opacity;
+            transition: 
+                transform 0.8s var(--ease), 
+                opacity 0.8s var(--ease),
+                filter 0.8s var(--ease);
+        }
+
+        #entry-section.exit {
+            transform: translateY(-50px) rotateX(20deg);
+            opacity: 0;
+            filter: blur(10px);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            font-size: 64px;
+            margin-bottom: 30px;
+            display: inline-block;
+            animation: logoIntro 1.2s var(--spring);
+        }
+
+        @keyframes logoIntro {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero-text h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            background: linear-gradient(180deg, #1d1d1f 0%, #434344 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: var(--text-sub);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        /* Input Interaction */
+        .input-field {
+            position: relative;
+            margin-bottom: 25px;
+            transition: transform 0.3s var(--ease);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 4px;
+            transition: all 0.3s var(--ease);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15), 0 10px 30px rgba(0,0,0,0.05);
+            transform: scale(1.02);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .checkbox-container label { font-size: 14px; color: var(--text-sub); cursor: pointer; }
+
+        .btn-prime {
+            width: 100%;
+            padding: 20px;
+            border-radius: 18px;
+            border: none;
+            background: var(--text-main);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s var(--ease);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-prime:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background: #000;
+        }
+
+        .btn-prime:active { transform: scale(0.97); }
+
+        /* --- DASHBOARD SECTION --- */
+        #dashboard-section {
+            position: absolute;
+            width: 95%;
+            max-width: 1200px;
+            height: 85vh;
+            display: none;
+            opacity: 0;
+            transform: translateY(100px) scale(0.95);
+            transition: all 1s var(--ease);
+        }
+
+        #dashboard-section.enter {
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .glass-card {
+            background: var(--surface);
+            backdrop-filter: blur(40px) saturate(150%);
+            -webkit-backdrop-filter: blur(40px) saturate(150%);
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.7);
+            padding: 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        }
+
+        /* Header Animation */
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+
+        .id-label {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(0, 113, 227, 0.08);
+            color: var(--accent);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .dash-header h2 { font-size: 32px; letter-spacing: -1.2px; font-weight: 700; }
+
+        /* Table Area */
+        .scroll-area {
+            flex: 1;
+            overflow-y: auto;
+            margin: 0 -10px;
+            padding: 0 10px;
+            scrollbar-width: none;
+        }
+        .scroll-area::-webkit-scrollbar { display: none; }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+        th {
+            text-align: left;
+            font-size: 12px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 20px;
+        }
+
+        /* Row Entry Animation */
+        tbody tr {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            transition: all 0.4s var(--ease);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        tbody tr.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        tbody tr:hover {
+            transform: scale(1.01) translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
+
+        td {
+            padding: 25px 20px;
+            font-size: 15px;
+        }
+
+        td:first-child { border-radius: 20px 0 0 20px; }
+        td:last-child { border-radius: 0 20px 20px 0; }
+
+        /* Status Pills Ultra-Clean */
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .pill::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        .pill-gps { background: rgba(36, 180, 126, 0.1); color: var(--success); }
+        .pill-gps::before { background: var(--success); box-shadow: 0 0 8px var(--success); }
+        
+        .pill-isp { background: rgba(245, 166, 35, 0.1); color: var(--warning); }
+        .pill-isp::before { background: var(--warning); }
+
+        .btn-map-action {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .btn-map-action:hover { opacity: 0.6; }
+
+        /* Logout */
+        .btn-logout {
+            background: none;
+            border: none;
+            color: var(--text-sub);
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+        .btn-logout:hover { color: #ff3b30; }
+
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="app-shell">
+        
+        <section id="entry-section">
+            <div class="logo-container">🕊️</div>
+            <div class="hero-text">
+                <h1>Avraham The Great</h1>
+                <p>masukan id anda untuk melihat data</p>
+            </div>
+
+            <div class="input-field">
+                <input type="text" id="cyber-id-input" placeholder="0000000000" maxlength="10">
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">remember me</label>
+            </div>
+
+            <button class="btn-prime" id="access-btn" onclick="handleAuth()">Lihat data!</button>
+        </section>
+
+        <section id="dashboard-section">
+            <div class="glass-card">
+                <div class="dash-header">
+                    <div>
+                        <span class="id-label" id="active-id">ID: --</span>
+                        <h2>Tactical Radar Data</h2>
+                    </div>
+                    <button class="btn-logout" onclick="killSession()">Terminate Session</button>
+                </div>
+
+                <div class="scroll-area">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Network Node</th>
+                                <th>Geolocation</th>
+                                <th>Integrity</th>
+                                <th>Intelligence</th>
+                            </tr>
+                        </thead>
+                        <tbody id="intel-table-body">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        /**
+         * -------------------------------------------------------------------
+         * AVRAHAM INTEL KERNEL v5.0 (ULTRA SMOOTH)
+         * -------------------------------------------------------------------
+         */
+
+        const supabase = window.supabase.createClient(
+            'https://jslpbkoynijeermqeehj.supabase.co',
+            'sb_publishable_VZ8Dfy9m781kpo-CGcg-sw_t5S6h6VY'
+        );
+
+        const UI = {
+            entry: document.getElementById('entry-section'),
+            dash: document.getElementById('dashboard-section'),
+            input: document.getElementById('cyber-id-input'),
+            table: document.getElementById('intel-table-body'),
+            activeID: document.getElementById('active-id'),
+            remember: document.getElementById('remember-me'),
+            btn: document.getElementById('access-btn')
+        };
+
+        // On Load Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const persistence = localStorage.getItem('av_root_token');
+            if (persistence) {
+                UI.input.value = persistence;
+                handleAuth();
+            }
+        });
+
+        // Auth Logic with Transition
+        async function handleAuth() {
+            const idVal = UI.input.value.trim();
+            if (idVal.length !== 10) return shakeEffect();
+
+            UI.btn.innerText = "VERIFYING...";
+            UI.btn.disabled = true;
+
+            const { data, error } = await supabase.from('cyber_users').select('*').eq('cyber_id', idVal).single();
+
+            if (data) {
+                if (UI.remember.checked) localStorage.setItem('av_root_token', idVal);
+                UI.activeID.innerText = `ROOT ID: ${idVal}`;
+                
+                startDataStream(idVal);
+                executeTransition();
+            } else {
+                UI.btn.innerText = "INITIALIZE KERNEL";
+                UI.btn.disabled = false;
+                alert("ACCESS DENIED: ID NOT RECOGNIZED IN DATABASE");
+                shakeEffect();
+            }
+        }
+
+        // Transition Animation logic
+        function executeTransition() {
+            UI.entry.classList.add('exit');
+            setTimeout(() => {
+                UI.entry.style.display = 'none';
+                UI.dash.style.display = 'flex';
+                void UI.dash.offsetWidth; // Force Reflow
+                UI.dash.classList.add('enter');
+            }, 800);
+        }
+
+        // Real-time Data Fetching
+        async function startDataStream(owner) {
+            fetchIntel(owner);
+            // Ultra-frequent polling for real-time feel
+            setInterval(() => fetchIntel(owner), 10000);
+        }
+
+        async function fetchIntel(owner) {
+            const { data, error } = await supabase
+                .from('intel_logs')
+                .select('*')
+                .eq('owner_id', owner)
+                .order('created_at', { ascending: false });
+
+            if (data) {
+                renderTable(data);
+            }
+        }
+
+        // Smooth Row Rendering
+        function renderTable(logs) {
+            UI.table.innerHTML = '';
+            if (logs.length === 0) {
+                UI.table.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#86868b; padding:100px;">Waiting for reconnaissance data...</td></tr>';
+                return;
+            }
+
+            logs.forEach((log, index) => {
+                const tr = document.createElement('tr');
+                const timeStr = new Date(log.created_at).toLocaleString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const mapUrl = log.latitude ? `https://www.google.com/maps/search/?api=1&query=${log.latitude},${log.longitude}` : '#';
+
+                tr.innerHTML = `
+                    <td>${timeStr}</td>
+                    <td style="font-family:monospace; font-weight:500;">${log.ip_address || '---'}</td>
+                    <td>${log.city || 'Private'}</td>
+                    <td>
+                        <span class="pill ${log.status === 'ACCURATE GPS' ? 'pill-gps' : 'pill-isp'}">
+                            ${log.status}
+                        </span>
+                    </td>
+                    <td class="col-action">
+                        ${log.latitude ? `<a href="${mapUrl}" target="_blank" class="btn-map-action">TRACK LOCATION</a>` : 'NO DATA'}
+                    </td>
+                `;
+
+                UI.table.appendChild(tr);
+
+                // Staggered Animation Delay
+                setTimeout(() => {
+                    tr.classList.add('visible');
+                }, index * 50);
+            });
+        }
+
+        function killSession() {
+            localStorage.removeItem('av_root_token');
+            location.reload();
+        }
+
+        function shakeEffect() {
+            UI.input.style.transform = 'translateX(10px)';
+            setTimeout(() => UI.input.style.transform = 'translateX(-10px)', 100);
+            setTimeout(() => UI.input.style.transform = 'translateX(0)', 200);
+        }
+
+        // Listener for Enter Key
+        UI.input.addEventListener('keydown', (e) => {
+            if (e.keyCode === 13) handleAuth();
+        });
+
+    </script>
+</body>
+</html>
