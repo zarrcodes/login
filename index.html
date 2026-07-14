@@ -1,534 +1,428 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Avraham Intelligence 🕊️</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro SportBet Data Scientist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* AVRAHAM INTEL CORE DESIGN SYSTEM
-           Refined by Gemini for Supreme Root Mamat Ibrahim
-        */
-        :root {
-            --bg: #fbfbfd;
-            --surface: rgba(255, 255, 255, 0.85);
-            --text-main: #1d1d1f;
-            --text-sub: #86868b;
-            --accent: #0071e3;
-            --border: rgba(0, 0, 0, 0.08);
-            --success: #24b47e;
-            --warning: #f5a623;
-            --ease: cubic-bezier(0.4, 0, 0.2, 1);
-            --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        /* Base Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            font-family: 'Inter', sans-serif;
-        }
-
+        /* Smooth Rendering & Base Setup */
         body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            overflow: hidden; /* Animasi transisi akan handle scroll */
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-color: #f8fafc; /* Very light slate for contrast against white cards */
+            color: #0f172a;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- BACKGROUND ORBS (SUBTLE BLURRY EFFECT) --- */
-        .orb {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
-            opacity: 0.4;
-            animation: orbFloat 20s infinite alternate var(--ease);
-        }
-        .orb-1 { background: #d0e1f9; top: -100px; left: -100px; }
-        .orb-2 { background: #f9e1d0; bottom: -100px; right: -100px; animation-delay: -5s; }
-
-        @keyframes orbFloat {
-            from { transform: translate(0, 0) scale(1); }
-            to { transform: translate(50px, 100px) scale(1.1); }
+        /* Glassmorphism Header */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        /* --- APP WRAPPER --- */
-        .app-shell {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1500px;
+        /* Form Inputs */
+        input, select {
+            transition: all 0.2s ease-in-out;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
         }
 
-        /* --- ENTRY SECTION (LOGIN) --- */
-        #entry-section {
-            width: 100%;
-            max-width: 400px;
-            padding: 40px;
-            text-align: center;
-            will-change: transform, opacity;
-            transition: 
-                transform 0.8s var(--ease), 
-                opacity 0.8s var(--ease),
-                filter 0.8s var(--ease);
+        /* Soft Shadows & Hover States */
+        .card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
-
-        #entry-section.exit {
-            transform: translateY(-50px) rotateX(20deg);
-            opacity: 0;
-            filter: blur(10px);
-            pointer-events: none;
-        }
-
-        .logo-container {
-            font-size: 64px;
-            margin-bottom: 30px;
-            display: inline-block;
-            animation: logoIntro 1.2s var(--spring);
-        }
-
-        @keyframes logoIntro {
-            from { transform: scale(0.5); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .hero-text h1 {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-            background: linear-gradient(180deg, #1d1d1f 0%, #434344 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-text p {
-            font-size: 16px;
-            color: var(--text-sub);
-            margin-bottom: 40px;
-            line-height: 1.5;
-        }
-
-        /* Input Interaction */
-        .input-field {
-            position: relative;
-            margin-bottom: 25px;
-            transition: transform 0.3s var(--ease);
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 20px;
-            border-radius: 18px;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            backdrop-filter: blur(20px);
-            font-size: 18px;
-            text-align: center;
-            letter-spacing: 4px;
-            transition: all 0.3s var(--ease);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-
-        input[type="text"]:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15), 0 10px 30px rgba(0,0,0,0.05);
-            transform: scale(1.02);
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .checkbox-container label { font-size: 14px; color: var(--text-sub); cursor: pointer; }
-
-        .btn-prime {
-            width: 100%;
-            padding: 20px;
-            border-radius: 18px;
-            border: none;
-            background: var(--text-main);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s var(--ease);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .btn-prime:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            background: #000;
-        }
-
-        .btn-prime:active { transform: scale(0.97); }
-
-        /* --- DASHBOARD SECTION --- */
-        #dashboard-section {
-            position: absolute;
-            width: 95%;
-            max-width: 1200px;
-            height: 85vh;
-            display: none;
-            opacity: 0;
-            transform: translateY(100px) scale(0.95);
-            transition: all 1s var(--ease);
-        }
-
-        #dashboard-section.enter {
-            display: flex;
-            flex-direction: column;
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .glass-card {
-            background: var(--surface);
-            backdrop-filter: blur(40px) saturate(150%);
-            -webkit-backdrop-filter: blur(40px) saturate(150%);
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.7);
-            padding: 40px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-        }
-
-        /* Header Animation */
-        .dash-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 40px;
-        }
-
-        .id-label {
-            display: inline-block;
-            padding: 6px 12px;
-            background: rgba(0, 113, 227, 0.08);
-            color: var(--accent);
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .dash-header h2 { font-size: 32px; letter-spacing: -1.2px; font-weight: 700; }
-
-        /* Table Area */
-        .scroll-area {
-            flex: 1;
-            overflow-y: auto;
-            margin: 0 -10px;
-            padding: 0 10px;
-            scrollbar-width: none;
-        }
-        .scroll-area::-webkit-scrollbar { display: none; }
-
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 15px;
-        }
-
-        th {
-            text-align: left;
-            font-size: 12px;
-            color: var(--text-sub);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0 20px;
-        }
-
-        /* Row Entry Animation */
-        tbody tr {
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
-            transition: all 0.4s var(--ease);
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        tbody tr.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        tbody tr:hover {
-            transform: scale(1.01) translateY(-3px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            z-index: 10;
-        }
-
-        td {
-            padding: 25px 20px;
-            font-size: 15px;
-        }
-
-        td:first-child { border-radius: 20px 0 0 20px; }
-        td:last-child { border-radius: 0 20px 20px 0; }
-
-        /* Status Pills Ultra-Clean */
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-        .pill::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-        }
-        .pill-gps { background: rgba(36, 180, 126, 0.1); color: var(--success); }
-        .pill-gps::before { background: var(--success); box-shadow: 0 0 8px var(--success); }
         
-        .pill-isp { background: rgba(245, 166, 35, 0.1); color: var(--warning); }
-        .pill-isp::before { background: var(--warning); }
-
-        .btn-map-action {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.2s;
+        .btn-smooth {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .btn-map-action:hover { opacity: 0.6; }
-
-        /* Logout */
-        .btn-logout {
-            background: none;
-            border: none;
-            color: var(--text-sub);
-            font-weight: 500;
-            cursor: pointer;
-            padding: 10px;
-            transition: color 0.3s;
+        .btn-smooth:active {
+            transform: scale(0.96);
         }
-        .btn-logout:hover { color: #ff3b30; }
 
+        /* Custom Scrollbar - Modern & Clean */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
     </style>
 </head>
-<body>
+<body class="min-h-screen">
 
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+    <header class="glass-header sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white font-bold shadow-lg shadow-brand-500/30">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-slate-800">
+                    Data<span class="font-normal text-brand-600">Scientist.</span>
+                </h1>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2">
+                <button onclick="exportJPG()" class="btn-smooth bg-white border border-slate-200 text-slate-600 font-semibold text-xs px-4 py-2 rounded-full hover:bg-slate-50 hover:border-slate-300 shadow-sm flex items-center gap-1.5">
+                    <span>🖼️</span> JPG
+                </button>
+                <button onclick="exportCSV()" class="btn-smooth bg-brand-600 text-white font-semibold text-xs px-4 py-2 rounded-full hover:bg-brand-700 shadow-md shadow-brand-500/20 flex items-center gap-1.5">
+                    <span>📊</span> CSV
+                </button>
+                <button onclick="exportTXT()" class="btn-smooth bg-white border border-slate-200 text-slate-600 font-semibold text-xs px-4 py-2 rounded-full hover:bg-slate-50 hover:border-slate-300 shadow-sm flex items-center gap-1.5">
+                    <span>📝</span> TXT
+                </button>
+            </div>
+        </div>
+    </header>
 
-    <div class="app-shell">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 xl:grid-cols-12 gap-8">
         
-        <section id="entry-section">
-            <div class="logo-container">🕊️</div>
-            <div class="hero-text">
-                <h1>Avraham The Great</h1>
-                <p>masukan id anda untuk melihat data</p>
-            </div>
-
-            <div class="input-field">
-                <input type="text" id="cyber-id-input" placeholder="0000000000" maxlength="10">
-            </div>
-
-            <div class="checkbox-container">
-                <input type="checkbox" id="remember-me">
-                <label for="remember-me">remember me</label>
-            </div>
-
-            <button class="btn-prime" id="access-btn" onclick="handleAuth()">Lihat data!</button>
-        </section>
-
-        <section id="dashboard-section">
-            <div class="glass-card">
-                <div class="dash-header">
-                    <div>
-                        <span class="id-label" id="active-id">ID: --</span>
-                        <h2>Tactical Radar Data</h2>
-                    </div>
-                    <button class="btn-logout" onclick="killSession()">Terminate Session</button>
+        <div class="xl:col-span-4 h-fit xl:sticky top-24">
+            <div class="bg-white p-6 rounded-2xl card-shadow border border-slate-100 animate-fade-in-up">
+                <div class="flex items-center gap-2 mb-6 pb-4 border-b border-slate-100">
+                    <div class="w-1 h-6 bg-brand-500 rounded-full"></div>
+                    <h2 class="text-lg font-bold text-slate-800">Input Data Match</h2>
                 </div>
 
-                <div class="scroll-area">
-                    <table>
+                <form id="dataForm" onsubmit="saveData(event)" class="space-y-5 text-sm">
+                    <div>
+                        <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Kategori Data</label>
+                        <select id="kategori" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-medium cursor-pointer">
+                            <option value="H2H">H2H</option>
+                            <option value="Team Home (Venue Specific)">Team Home  (Venue Specific)</option>
+                            <option value="Team Home (Overall)">Team Home (Overall Reguler)</option>
+                            <option value="Team B (Venue Specific)">Team Away (Venue Specific)</option>
+                            <option value="Team Away (Overall)">Team Away (Overall Reguler)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Match</label>
+                        <input type="text" id="matchName" placeholder="Contoh: GAIS vs Elfsborg" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-4">
+                        <div>
+                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Skor (GF-GA)</label>
+                            <input type="text" id="score" placeholder="Ex: 2-1" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-semibold">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Lokasi</label>
+                            <select id="venue" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 cursor-pointer">
+                                <option value="Home">Home</option>
+                                <option value="Away">Away</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">xG</label>
+                            <input type="text" id="xg" placeholder="1.62-0.80" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Shoot (ontarget)</label>
+                            <input type="text" id="sot" placeholder="6-2" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-4">
+                        <div>
+                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Possession (%)</label>
+                            <input type="number" id="poss" placeholder="55" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Handicap</label>
+                            <input type="text" id="hdp" placeholder="-0.5" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-semibold">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Penalti</label>
+                            <input type="text" id="pen" placeholder="1-0" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-center" value="0-0">
+                        </div>
+                        <div>
+                            <label class="block font-medium text-red-500 mb-1.5 text-xs uppercase tracking-wider">Kartu Merah?</label>
+                            <select id="redcard" class="w-full p-2.5 bg-red-50 border border-red-200 rounded-lg text-red-700 cursor-pointer focus:ring-red-500 focus:border-red-500">
+                                <option value="Tidak Ada">Tidak Ada</option>
+                                <option value="Team">Ya (Team)</option>
+                                <option value="Opponent">Ya (Lawan)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-600 text-white font-semibold py-3.5 rounded-xl mt-2 hover:bg-brand-700 shadow-lg shadow-brand-500/30 btn-smooth flex justify-center items-center gap-2 text-sm uppercase tracking-wider">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        Simpan Analisis
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="xl:col-span-8">
+            <div id="export-section" class="bg-white p-6 rounded-2xl card-shadow border border-slate-100 relative min-h-[400px]">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-slate-100 pb-4 mb-4 gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                            Database Analisis
+                            <span class="bg-brand-100 text-brand-700 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">Terverifikasi</span>
+                        </h2>
+                        <p class="text-sm text-slate-500 mt-1">Sistem tracking metrik performa berbasis algoritma.</p>
+                    </div>
+                    <button onclick="clearData()" class="btn-smooth text-xs font-semibold text-slate-400 hover:text-red-500 bg-slate-50 hover:bg-red-50 px-3 py-1.5 rounded-lg border border-slate-200 hover:border-red-200 transition-colors flex items-center gap-1 print-hide">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        Clear Data
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto rounded-xl border border-slate-100">
+                    <table class="w-full text-left border-collapse text-sm whitespace-nowrap">
                         <thead>
-                            <tr>
-                                <th>Timestamp</th>
-                                <th>Network Node</th>
-                                <th>Geolocation</th>
-                                <th>Integrity</th>
-                                <th>Intelligence</th>
+                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider font-semibold border-b border-slate-200">
+                                <th class="p-4">Kategori</th>
+                                <th class="p-4">Match</th>
+                                <th class="p-4 text-center">Skor</th>
+                                <th class="p-4">xG</th>
+                                <th class="p-4">SoT</th>
+                                <th class="p-4">Poss</th>
+                                <th class="p-4 font-bold text-brand-600">HDP</th>
+                                <th class="p-4">Events</th>
+                                <th class="p-4 text-center print-hide w-10">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="intel-table-body">
+                        <tbody id="tableBody" class="divide-y divide-slate-100 bg-white">
                             </tbody>
                     </table>
                 </div>
             </div>
-        </section>
+        </div>
 
-    </div>
+    </main>
 
     <script>
-        /**
-         * -------------------------------------------------------------------
-         * AVRAHAM INTEL KERNEL v5.0 (ULTRA SMOOTH)
-         * -------------------------------------------------------------------
-         */
+        let db = JSON.parse(localStorage.getItem('bbcData')) || [];
 
-        const supabase = window.supabase.createClient(
-            'https://jslpbkoynijeermqeehj.supabase.co',
-            'sb_publishable_VZ8Dfy9m781kpo-CGcg-sw_t5S6h6VY'
-        );
+        function saveData(e) {
+            e.preventDefault();
+            const data = {
+                id: Date.now(),
+                kategori: document.getElementById('kategori').value,
+                matchName: document.getElementById('matchName').value,
+                score: document.getElementById('score').value,
+                venue: document.getElementById('venue').value,
+                xg: document.getElementById('xg').value,
+                sot: document.getElementById('sot').value,
+                poss: document.getElementById('poss').value + '%',
+                hdp: document.getElementById('hdp').value,
+                pen: document.getElementById('pen').value,
+                redcard: document.getElementById('redcard').value
+            };
 
-        const UI = {
-            entry: document.getElementById('entry-section'),
-            dash: document.getElementById('dashboard-section'),
-            input: document.getElementById('cyber-id-input'),
-            table: document.getElementById('intel-table-body'),
-            activeID: document.getElementById('active-id'),
-            remember: document.getElementById('remember-me'),
-            btn: document.getElementById('access-btn')
-        };
+            db.push(data);
+            localStorage.setItem('bbcData', JSON.stringify(db));
 
-        // On Load Logic
-        window.addEventListener('DOMContentLoaded', () => {
-            const persistence = localStorage.getItem('av_root_token');
-            if (persistence) {
-                UI.input.value = persistence;
-                handleAuth();
-            }
-        });
+            let currentKat = document.getElementById('kategori').value;
+            document.getElementById('dataForm').reset();
+            document.getElementById('kategori').value = currentKat;
+            document.getElementById('pen').value = "0-0";
 
-        // Auth Logic with Transition
-        async function handleAuth() {
-            const idVal = UI.input.value.trim();
-            if (idVal.length !== 10) return shakeEffect();
-
-            UI.btn.innerText = "VERIFYING...";
-            UI.btn.disabled = true;
-
-            const { data, error } = await supabase.from('cyber_users').select('*').eq('cyber_id', idVal).single();
-
-            if (data) {
-                if (UI.remember.checked) localStorage.setItem('av_root_token', idVal);
-                UI.activeID.innerText = `ROOT ID: ${idVal}`;
-                
-                startDataStream(idVal);
-                executeTransition();
-            } else {
-                UI.btn.innerText = "INITIALIZE KERNEL";
-                UI.btn.disabled = false;
-                alert("ACCESS DENIED: ID NOT RECOGNIZED IN DATABASE");
-                shakeEffect();
-            }
+            renderTable(true);
         }
 
-        // Transition Animation logic
-        function executeTransition() {
-            UI.entry.classList.add('exit');
-            setTimeout(() => {
-                UI.entry.style.display = 'none';
-                UI.dash.style.display = 'flex';
-                void UI.dash.offsetWidth; // Force Reflow
-                UI.dash.classList.add('enter');
-            }, 800);
-        }
+        function renderTable(isNew = false) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
 
-        // Real-time Data Fetching
-        async function startDataStream(owner) {
-            fetchIntel(owner);
-            // Ultra-frequent polling for real-time feel
-            setInterval(() => fetchIntel(owner), 10000);
-        }
-
-        async function fetchIntel(owner) {
-            const { data, error } = await supabase
-                .from('intel_logs')
-                .select('*')
-                .eq('owner_id', owner)
-                .order('created_at', { ascending: false });
-
-            if (data) {
-                renderTable(data);
-            }
-        }
-
-        // Smooth Row Rendering
-        function renderTable(logs) {
-            UI.table.innerHTML = '';
-            if (logs.length === 0) {
-                UI.table.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#86868b; padding:100px;">Waiting for reconnaissance data...</td></tr>';
+            if(db.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="p-12 text-center text-slate-400">
+                            <div class="flex flex-col items-center justify-center gap-2">
+                                <svg class="w-12 h-12 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                                <span class="font-medium">Belum ada data analisis.</span>
+                                <span class="text-xs">Silakan input data match baru melalui form.</span>
+                            </div>
+                        </td>
+                    </tr>`;
                 return;
             }
 
-            logs.forEach((log, index) => {
-                const tr = document.createElement('tr');
-                const timeStr = new Date(log.created_at).toLocaleString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                const mapUrl = log.latitude ? `https://www.google.com/maps/search/?api=1&query=${log.latitude},${log.longitude}` : '#';
+            db.forEach((row, index) => {
+                let badgeClass = "bg-slate-100 text-slate-600 border border-slate-200";
+                if(row.kategori.includes("H2H")) badgeClass = "bg-brand-50 text-brand-700 border border-brand-200";
+                if(row.kategori.includes("Venue")) badgeClass = "bg-blue-50 text-blue-700 border border-blue-200";
 
-                tr.innerHTML = `
-                    <td>${timeStr}</td>
-                    <td style="font-family:monospace; font-weight:500;">${log.ip_address || '---'}</td>
-                    <td>${log.city || 'Private'}</td>
-                    <td>
-                        <span class="pill ${log.status === 'ACCURATE GPS' ? 'pill-gps' : 'pill-isp'}">
-                            ${log.status}
-                        </span>
-                    </td>
-                    <td class="col-action">
-                        ${log.latitude ? `<a href="${mapUrl}" target="_blank" class="btn-map-action">TRACK LOCATION</a>` : 'NO DATA'}
-                    </td>
+                let venueIcon = row.venue === 'Home' 
+                    ? '<span class="text-[10px] bg-slate-800 text-white px-1.5 py-0.5 rounded ml-2 font-medium">H</span>' 
+                    : '<span class="text-[10px] bg-slate-100 text-slate-600 border border-slate-300 px-1.5 py-0.5 rounded ml-2 font-medium">A</span>';
+
+                let eventsHtml = "";
+                if(row.redcard !== "Tidak Ada" || row.pen !== "0-0") {
+                    if(row.pen !== "0-0") eventsHtml += `<span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-[10px] font-bold mr-1">P: ${row.pen}</span>`;
+                    if(row.redcard !== "Tidak Ada") eventsHtml += `<span class="bg-red-100 text-red-700 px-2 py-1 rounded text-[10px] font-bold">RC: ${row.redcard.substring(0,3)}</span>`;
+                } else {
+                    eventsHtml = `<span class="text-slate-300">-</span>`;
+                }
+
+                // Add animation class if it's the last added item and isNew is true
+                let rowAnimation = (isNew && index === db.length - 1) ? 'animate-fade-in-up' : '';
+
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50 transition-colors group ${rowAnimation}">
+                        <td class="p-4"><span class="px-2.5 py-1 text-[10px] font-bold rounded-full ${badgeClass}">${row.kategori}</span></td>
+                        <td class="p-4 font-medium text-slate-800 flex items-center">${row.matchName} ${venueIcon}</td>
+                        <td class="p-4 text-center">
+                            <span class="inline-block bg-slate-800 text-white font-bold px-3 py-1 rounded-md shadow-sm">${row.score}</span>
+                        </td>
+                        <td class="p-4 font-medium text-slate-600">${row.xg}</td>
+                        <td class="p-4 font-medium text-slate-600">${row.sot}</td>
+                        <td class="p-4 text-slate-600">
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 bg-slate-200 rounded-full h-1.5"><div class="bg-brand-500 h-1.5 rounded-full" style="width: ${row.poss}"></div></div>
+                                <span class="text-xs font-medium">${row.poss}</span>
+                            </div>
+                        </td>
+                        <td class="p-4 font-bold text-brand-600">${row.hdp}</td>
+                        <td class="p-4">${eventsHtml}</td>
+                        <td class="p-4 text-center print-hide">
+                            <button onclick="deleteItem(${index})" class="opacity-0 group-hover:opacity-100 transition-opacity p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </td>
+                    </tr>
                 `;
-
-                UI.table.appendChild(tr);
-
-                // Staggered Animation Delay
-                setTimeout(() => {
-                    tr.classList.add('visible');
-                }, index * 50);
             });
         }
 
-        function killSession() {
-            localStorage.removeItem('av_root_token');
-            location.reload();
+        function deleteItem(index) {
+            db.splice(index, 1);
+            localStorage.setItem('bbcData', JSON.stringify(db));
+            renderTable();
         }
 
-        function shakeEffect() {
-            UI.input.style.transform = 'translateX(10px)';
-            setTimeout(() => UI.input.style.transform = 'translateX(-10px)', 100);
-            setTimeout(() => UI.input.style.transform = 'translateX(0)', 200);
+        function clearData() {
+            if(confirm('Apakah Anda yakin ingin menghapus seluruh data analisis?')) {
+                db = [];
+                localStorage.removeItem('bbcData');
+                renderTable();
+            }
         }
 
-        // Listener for Enter Key
-        UI.input.addEventListener('keydown', (e) => {
-            if (e.keyCode === 13) handleAuth();
-        });
+        // --- EXPORT FEATURES ---
+        function exportCSV() {
+            if(db.length === 0) return alert('Data masih kosong!');
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Kategori,Match,Venue,Skor,xG(Team-Opp),SoT(Team-Opp),Possession,HDP,Penalti,RedCard\n";
+            
+            db.forEach(row => {
+                let r = [row.kategori, row.matchName, row.venue, row.score, row.xg, row.sot, row.poss, row.hdp, row.pen, row.redcard];
+                csvContent += r.join(",") + "\n";
+            });
 
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "Pro_SportBet_Data.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function exportTXT() {
+            if(db.length === 0) return alert('Data masih kosong!');
+            let txt = "=========================================\n";
+            txt += "    PRO SPORTBET DATA SCIENTIST LOG      \n";
+            txt += "=========================================\n\n";
+            
+            db.forEach(row => {
+                txt += `[${row.kategori.toUpperCase()}] ${row.matchName} (${row.venue})\n`;
+                txt += `> Skor : ${row.score} | HDP: ${row.hdp} | Poss: ${row.poss}\n`;
+                txt += `> xG   : ${row.xg} | SoT: ${row.sot}\n`;
+                if (row.pen !== "0-0" || row.redcard !== "Tidak Ada") {
+                    txt += `> Event: Penalti (${row.pen}), Kartu Merah (${row.redcard})\n`;
+                }
+                txt += `-----------------------------------------\n`;
+            });
+
+            const blob = new Blob([txt], { type: 'text/plain' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Pro_SportBet_Analysis.txt";
+            link.click();
+        }
+
+        function exportJPG() {
+            if(db.length === 0) return alert('Data masih kosong!');
+            
+            // Sembunyikan elemen yang tidak perlu di screenshot
+            const hideElems = document.querySelectorAll('.print-hide');
+            hideElems.forEach(el => el.style.display = 'none');
+            
+            const element = document.getElementById("export-section");
+            
+            // Tambahkan sedikit padding untuk estetika ekspor
+            element.style.padding = "32px";
+            
+            html2canvas(element, { 
+                scale: 3, // Kualitas HD
+                backgroundColor: "#ffffff",
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Pro_SportBet_Table.jpg';
+                link.href = canvas.toDataURL('image/jpeg', 1.0);
+                link.click();
+                
+                // Kembalikan seperti semula
+                hideElems.forEach(el => el.style.display = '');
+                element.style.padding = ""; 
+            });
+        }
+
+        window.onload = renderTable;
     </script>
 </body>
 </html>
