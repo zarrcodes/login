@@ -3,426 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro SportBet Data Scientist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif']
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            900: '#14532d',
-                        }
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(10px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <title>HOLYYYBROTALL.ORG</title>
     <style>
-        /* Smooth Rendering & Base Setup */
-        body {
-            background-color: #f8fafc; /* Very light slate for contrast against white cards */
-            color: #0f172a;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Glassmorphism Header */
-        .glass-header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        /* Form Inputs */
-        input, select {
-            transition: all 0.2s ease-in-out;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #22c55e;
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
-        }
-
-        /* Soft Shadows & Hover States */
-        .card-shadow {
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        /* 4CHAN BRUTALIST PURE WHITE THEME */
+        body { 
+            background-color: #ffffff; 
+            color: #000000; 
+            font-family: arial, helvetica, sans-serif; 
+            font-size: 13px; 
+            margin: 10px;
         }
         
-        .btn-smooth {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-smooth:active {
-            transform: scale(0.96);
+        a { color: #34345c; text-decoration: none; cursor: pointer; }
+        a:hover { color: #dd0000; }
+        hr { border: none; border-top: 1px solid #b7c5d9; height: 1px; margin: 10px 0; }
+        
+        /* HEADER / LOGO */
+        .board-title { 
+            text-align: center; 
+            color: #af0a0f; 
+            font-size: 28px; 
+            font-weight: bold; 
+            margin: 20px 0; 
+            letter-spacing: 2px; 
+            font-family: impact, arial, sans-serif;
         }
 
-        /* Custom Scrollbar - Modern & Clean */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        /* COMPOSE FORM (KOTAK KOMENTAR) */
+        .postForm-container { text-align: center; margin-bottom: 20px; }
+        .postForm { 
+            display: inline-table; 
+            background: #eaebf1; 
+            border: 1px solid #b7c5d9; 
+            padding: 5px; 
+            text-align: left;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9; 
-            border-radius: 10px;
+        .form-row { display: table-row; }
+        .form-label { 
+            display: table-cell; 
+            font-weight: bold; 
+            padding: 5px 10px; 
+            color: #484852; 
+            vertical-align: top;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 10px;
+        .form-input { display: table-cell; padding: 2px; }
+        input[type="text"], textarea { 
+            border: 1px solid #aaa; 
+            padding: 3px; 
+            font-family: arial, sans-serif; 
+            font-size: 13px; 
+            width: 100%;
+            box-sizing: border-box;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
+        textarea { resize: vertical; min-width: 250px; }
+        button { cursor: pointer; padding: 2px 6px; font-size: 12px; }
+        
+        #replyBadge { display: none; color: #ff0000; font-weight: bold; margin-bottom: 10px; }
+        .img-status { font-size: 11px; margin-left: 5px; color: #555; }
+
+        /* POST FEED LAYOUT */
+        .post-thread { margin-bottom: 20px; }
+        .post-header { margin-bottom: 5px; font-size: 12px; }
+        .post-name { color: #117743; font-weight: bold; }
+        .post-time { margin: 0 5px; }
+        .post-id { color: #000000; }
+        
+        /* MAIN POST VS REPLY (WARNA BACKGROUND BEDA KAYAK 4CHAN) */
+        .post-main { display: block; margin-bottom: 5px; }
+        .post-reply { 
+            background: #d6daf0; 
+            border: 1px solid #b7c5d9; 
+            padding: 5px 10px; 
+            margin-top: 5px; 
+            margin-left: 20px; 
+            display: table; /* Agar kotak menyesuaikan isi teks */
+            max-width: 90%;
+        }
+
+        .post-image { 
+            max-width: 250px; 
+            max-height: 250px; 
+            float: left; 
+            margin: 5px 15px 10px 0; 
+            border: 1px solid #000;
+        }
+        .post-text { margin-top: 5px; line-height: 1.4em; white-space: pre-wrap; word-wrap: break-word; }
+        .clear { clear: both; }
+
+        /* MOBILE RESPONSIVE ADJUSTMENTS */
+        @media only screen and (max-width: 600px) {
+            .postForm { display: block; width: 100%; }
+            .form-label, .form-input { display: block; width: 100%; }
+            .post-reply { margin-left: 10px; display: block; }
+            .post-image { max-width: 100%; height: auto; }
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-    <header class="glass-header sticky top-0 z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white font-bold shadow-lg shadow-brand-500/30">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                </div>
-                <h1 class="text-2xl font-bold tracking-tight text-slate-800">
-                    Data<span class="font-normal text-brand-600">Scientist.</span>
-                </h1>
-            </div>
-            <div class="flex flex-wrap justify-center gap-2">
-                <button onclick="exportJPG()" class="btn-smooth bg-white border border-slate-200 text-slate-600 font-semibold text-xs px-4 py-2 rounded-full hover:bg-slate-50 hover:border-slate-300 shadow-sm flex items-center gap-1.5">
-                    <span>🖼️</span> JPG
-                </button>
-                <button onclick="exportCSV()" class="btn-smooth bg-brand-600 text-white font-semibold text-xs px-4 py-2 rounded-full hover:bg-brand-700 shadow-md shadow-brand-500/20 flex items-center gap-1.5">
-                    <span>📊</span> CSV
-                </button>
-                <button onclick="exportTXT()" class="btn-smooth bg-white border border-slate-200 text-slate-600 font-semibold text-xs px-4 py-2 rounded-full hover:bg-slate-50 hover:border-slate-300 shadow-sm flex items-center gap-1.5">
-                    <span>📝</span> TXT
-                </button>
-            </div>
+    <div class="board-title">HOLYYYBROTALL</div>
+    <hr>
+
+    <!-- FORM INPUT -->
+    <div class="postForm-container">
+        <div id="replyBadge">
+            Membalas No.<span id="replyToId"></span> 
+            <button type="button" onclick="batalReply()">[Batal]</button>
         </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 xl:grid-cols-12 gap-8">
         
-        <div class="xl:col-span-4 h-fit xl:sticky top-24">
-            <div class="bg-white p-6 rounded-2xl card-shadow border border-slate-100 animate-fade-in-up">
-                <div class="flex items-center gap-2 mb-6 pb-4 border-b border-slate-100">
-                    <div class="w-1 h-6 bg-brand-500 rounded-full"></div>
-                    <h2 class="text-lg font-bold text-slate-800">Input Data Match</h2>
-                </div>
-
-                <form id="dataForm" onsubmit="saveData(event)" class="space-y-5 text-sm">
-                    <div>
-                        <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Kategori Data</label>
-                        <select id="kategori" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-medium cursor-pointer">
-                            <option value="H2H">H2H</option>
-                            <option value="Team Home (Venue Specific)">Team Home  (Venue Specific)</option>
-                            <option value="Team Home (Overall)">Team Home (Overall Reguler)</option>
-                            <option value="Team B (Venue Specific)">Team Away (Venue Specific)</option>
-                            <option value="Team Away (Overall)">Team Away (Overall Reguler)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Match</label>
-                        <input type="text" id="matchName" placeholder="Contoh: GAIS vs Elfsborg" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400">
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-4">
-                        <div>
-                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Skor (GF-GA)</label>
-                            <input type="text" id="score" placeholder="Ex: 2-1" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-semibold">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Lokasi</label>
-                            <select id="venue" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 cursor-pointer">
-                                <option value="Home">Home</option>
-                                <option value="Away">Away</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">xG</label>
-                            <input type="text" id="xg" placeholder="1.62-0.80" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Shoot (ontarget)</label>
-                            <input type="text" id="sot" placeholder="6-2" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4 border-t border-slate-100 pt-4">
-                        <div>
-                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Possession (%)</label>
-                            <input type="number" id="poss" placeholder="55" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Handicap</label>
-                            <input type="text" id="hdp" placeholder="-0.5" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-semibold">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-slate-600 mb-1.5 text-xs uppercase tracking-wider">Penalti</label>
-                            <input type="text" id="pen" placeholder="1-0" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-center" value="0-0">
-                        </div>
-                        <div>
-                            <label class="block font-medium text-red-500 mb-1.5 text-xs uppercase tracking-wider">Kartu Merah?</label>
-                            <select id="redcard" class="w-full p-2.5 bg-red-50 border border-red-200 rounded-lg text-red-700 cursor-pointer focus:ring-red-500 focus:border-red-500">
-                                <option value="Tidak Ada">Tidak Ada</option>
-                                <option value="Team">Ya (Team)</option>
-                                <option value="Opponent">Ya (Lawan)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-brand-600 text-white font-semibold py-3.5 rounded-xl mt-2 hover:bg-brand-700 shadow-lg shadow-brand-500/30 btn-smooth flex justify-center items-center gap-2 text-sm uppercase tracking-wider">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                        Simpan Analisis
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <div class="xl:col-span-8">
-            <div id="export-section" class="bg-white p-6 rounded-2xl card-shadow border border-slate-100 relative min-h-[400px]">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-slate-100 pb-4 mb-4 gap-4">
-                    <div>
-                        <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                            Database Analisis
-                            <span class="bg-brand-100 text-brand-700 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">Terverifikasi</span>
-                        </h2>
-                        <p class="text-sm text-slate-500 mt-1">Sistem tracking metrik performa berbasis algoritma.</p>
-                    </div>
-                    <button onclick="clearData()" class="btn-smooth text-xs font-semibold text-slate-400 hover:text-red-500 bg-slate-50 hover:bg-red-50 px-3 py-1.5 rounded-lg border border-slate-200 hover:border-red-200 transition-colors flex items-center gap-1 print-hide">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                        Clear Data
-                    </button>
-                </div>
-
-                <div class="overflow-x-auto rounded-xl border border-slate-100">
-                    <table class="w-full text-left border-collapse text-sm whitespace-nowrap">
-                        <thead>
-                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider font-semibold border-b border-slate-200">
-                                <th class="p-4">Kategori</th>
-                                <th class="p-4">Match</th>
-                                <th class="p-4 text-center">Skor</th>
-                                <th class="p-4">xG</th>
-                                <th class="p-4">SoT</th>
-                                <th class="p-4">Poss</th>
-                                <th class="p-4 font-bold text-brand-600">HDP</th>
-                                <th class="p-4">Events</th>
-                                <th class="p-4 text-center print-hide w-10">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody" class="divide-y divide-slate-100 bg-white">
-                            </tbody>
-                    </table>
+        <form id="postForm" class="postForm">
+            <input type="hidden" id="parent_id" value="">
+            <input type="hidden" id="linkGambarInput" value="">
+            
+            <div class="form-row">
+                <div class="form-label">Name</div>
+                <div class="form-input">
+                    <input type="text" id="namaInput" placeholder="Anonymous">
                 </div>
             </div>
-        </div>
+            
+            <div class="form-row">
+                <div class="form-label">Comment</div>
+                <div class="form-input">
+                    <textarea id="kontenInput" rows="4" cols="50" required></textarea>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">File</div>
+                <div class="form-input">
+                    <button type="button" onclick="masukkanGambar()">[Insert Image URL]</button>
+                    <span id="imgStatus" class="img-status">No file</span>
+                    <button type="button" id="hapusImgBtn" style="display:none;" onclick="hapusGambar()">[X]</button>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label"></div>
+                <div class="form-input" style="padding-top: 5px;">
+                    <button type="submit" id="btnKirim">Post</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr>
 
-    </main>
+    <!-- FEED TULISAN -->
+    <div id="feedArea">
+        Loading...
+    </div>
 
     <script>
-        let db = JSON.parse(localStorage.getItem('bbcData')) || [];
+        const API_URL = "https://ckblychtergzhqmioahi.supabase.co/rest/v1/forum";
+        const API_KEY = "sb_publishable_QNF3cmBH8_OmxPA8YFAHoQ_unB40-Ds";
 
-        function saveData(e) {
+        // LOGIKA INSERT IMAGE VIA PROMPT POPUP
+        function masukkanGambar() {
+            let url = prompt("Paste URL gambar di sini:");
+            if (url && url.trim() !== "") {
+                document.getElementById('linkGambarInput').value = url.trim();
+                document.getElementById('imgStatus').innerText = "Image attached";
+                document.getElementById('hapusImgBtn').style.display = "inline";
+            }
+        }
+
+        function hapusGambar() {
+            document.getElementById('linkGambarInput').value = "";
+            document.getElementById('imgStatus').innerText = "No file";
+            document.getElementById('hapusImgBtn').style.display = "none";
+        }
+
+        // FUNGSI MEMBALAS (REPLY)
+        function klikReply(idTarget) {
+            document.getElementById('parent_id').value = idTarget;
+            document.getElementById('replyToId').innerText = idTarget;
+            document.getElementById('replyBadge').style.display = "block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('kontenInput').focus();
+        }
+
+        function batalReply() {
+            document.getElementById('parent_id').value = "";
+            document.getElementById('replyBadge').style.display = "none";
+        }
+
+        // FUNGSI RENDER POST ALA 4CHAN
+        function renderPostHtml(post, isReply = false) {
+            let nama = post.nama && post.nama.trim() !== "" ? post.nama : "Anonymous";
+            let timeStr = new Date(post.created_at).toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: '2-digit'}) + " " + new Date(post.created_at).toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
+            
+            let imgHtml = post.gambar ? `<a href="${post.gambar}" target="_blank"><img src="${post.gambar}" class="post-image" onerror="this.style.display='none'"></a>` : '';
+            
+            // Post utama gak ada background, Reply ada background kotak
+            let containerClass = isReply ? "post-reply" : "post-main";
+            
+            return `
+                <div class="${containerClass}" id="p${post.id}">
+                    <div class="post-header">
+                        <span class="post-name">${nama}</span> 
+                        <span class="post-time">${timeStr}</span> 
+                        <span class="post-id">No.${post.id}</span>
+                        <a class="reply-btn" onclick="klikReply(${isReply ? post.parent_id : post.id})">[Reply]</a>
+                    </div>
+                    ${imgHtml}
+                    <div class="post-text">${post.konten}</div>
+                    <div class="clear"></div>
+                </div>
+            `;
+        }
+
+        // FUNGSI UTAMA AMBIL DATA
+        async function ambilTulisan() {
+            try {
+                const response = await fetch(`${API_URL}?select=*`, {
+                    method: "GET",
+                    headers: { "apikey": API_KEY, "Authorization": `Bearer ${API_KEY}` }
+                });
+
+                if (!response.ok) throw new Error("Gagal mengambil data");
+                const data = await response.json();
+
+                const feedArea = document.getElementById('feedArea');
+                if (data.length === 0) {
+                    feedArea.innerHTML = "Not found.";
+                    return;
+                }
+
+                // Main posts diurutkan dari yang terbaru, Balasan dari yang terlama
+                const mainPosts = data.filter(t => !t.parent_id).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                const allReplies = data.filter(t => t.parent_id);
+
+                let html = "";
+                mainPosts.forEach(main => {
+                    html += `<div class="post-thread">`;
+                    html += renderPostHtml(main, false);
+                    
+                    const balasannya = allReplies.filter(r => r.parent_id === main.id).sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+                    
+                    balasannya.forEach(reply => {
+                        html += renderPostHtml(reply, true);
+                    });
+                    
+                    html += `</div><hr>`;
+                });
+
+                feedArea.innerHTML = html;
+            } catch (error) {
+                document.getElementById('feedArea').innerHTML = "Database error.";
+            }
+        }
+
+        // FUNGSI UTAMA KIRIM DATA
+        document.getElementById('postForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const data = {
-                id: Date.now(),
-                kategori: document.getElementById('kategori').value,
-                matchName: document.getElementById('matchName').value,
-                score: document.getElementById('score').value,
-                venue: document.getElementById('venue').value,
-                xg: document.getElementById('xg').value,
-                sot: document.getElementById('sot').value,
-                poss: document.getElementById('poss').value + '%',
-                hdp: document.getElementById('hdp').value,
-                pen: document.getElementById('pen').value,
-                redcard: document.getElementById('redcard').value
-            };
-
-            db.push(data);
-            localStorage.setItem('bbcData', JSON.stringify(db));
-
-            let currentKat = document.getElementById('kategori').value;
-            document.getElementById('dataForm').reset();
-            document.getElementById('kategori').value = currentKat;
-            document.getElementById('pen').value = "0-0";
-
-            renderTable(true);
-        }
-
-        function renderTable(isNew = false) {
-            const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = '';
-
-            if(db.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="9" class="p-12 text-center text-slate-400">
-                            <div class="flex flex-col items-center justify-center gap-2">
-                                <svg class="w-12 h-12 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
-                                <span class="font-medium">Belum ada data analisis.</span>
-                                <span class="text-xs">Silakan input data match baru melalui form.</span>
-                            </div>
-                        </td>
-                    </tr>`;
-                return;
-            }
-
-            db.forEach((row, index) => {
-                let badgeClass = "bg-slate-100 text-slate-600 border border-slate-200";
-                if(row.kategori.includes("H2H")) badgeClass = "bg-brand-50 text-brand-700 border border-brand-200";
-                if(row.kategori.includes("Venue")) badgeClass = "bg-blue-50 text-blue-700 border border-blue-200";
-
-                let venueIcon = row.venue === 'Home' 
-                    ? '<span class="text-[10px] bg-slate-800 text-white px-1.5 py-0.5 rounded ml-2 font-medium">H</span>' 
-                    : '<span class="text-[10px] bg-slate-100 text-slate-600 border border-slate-300 px-1.5 py-0.5 rounded ml-2 font-medium">A</span>';
-
-                let eventsHtml = "";
-                if(row.redcard !== "Tidak Ada" || row.pen !== "0-0") {
-                    if(row.pen !== "0-0") eventsHtml += `<span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-[10px] font-bold mr-1">P: ${row.pen}</span>`;
-                    if(row.redcard !== "Tidak Ada") eventsHtml += `<span class="bg-red-100 text-red-700 px-2 py-1 rounded text-[10px] font-bold">RC: ${row.redcard.substring(0,3)}</span>`;
-                } else {
-                    eventsHtml = `<span class="text-slate-300">-</span>`;
-                }
-
-                // Add animation class if it's the last added item and isNew is true
-                let rowAnimation = (isNew && index === db.length - 1) ? 'animate-fade-in-up' : '';
-
-                tbody.innerHTML += `
-                    <tr class="hover:bg-slate-50 transition-colors group ${rowAnimation}">
-                        <td class="p-4"><span class="px-2.5 py-1 text-[10px] font-bold rounded-full ${badgeClass}">${row.kategori}</span></td>
-                        <td class="p-4 font-medium text-slate-800 flex items-center">${row.matchName} ${venueIcon}</td>
-                        <td class="p-4 text-center">
-                            <span class="inline-block bg-slate-800 text-white font-bold px-3 py-1 rounded-md shadow-sm">${row.score}</span>
-                        </td>
-                        <td class="p-4 font-medium text-slate-600">${row.xg}</td>
-                        <td class="p-4 font-medium text-slate-600">${row.sot}</td>
-                        <td class="p-4 text-slate-600">
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 bg-slate-200 rounded-full h-1.5"><div class="bg-brand-500 h-1.5 rounded-full" style="width: ${row.poss}"></div></div>
-                                <span class="text-xs font-medium">${row.poss}</span>
-                            </div>
-                        </td>
-                        <td class="p-4 font-bold text-brand-600">${row.hdp}</td>
-                        <td class="p-4">${eventsHtml}</td>
-                        <td class="p-4 text-center print-hide">
-                            <button onclick="deleteItem(${index})" class="opacity-0 group-hover:opacity-100 transition-opacity p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function deleteItem(index) {
-            db.splice(index, 1);
-            localStorage.setItem('bbcData', JSON.stringify(db));
-            renderTable();
-        }
-
-        function clearData() {
-            if(confirm('Apakah Anda yakin ingin menghapus seluruh data analisis?')) {
-                db = [];
-                localStorage.removeItem('bbcData');
-                renderTable();
-            }
-        }
-
-        // --- EXPORT FEATURES ---
-        function exportCSV() {
-            if(db.length === 0) return alert('Data masih kosong!');
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Kategori,Match,Venue,Skor,xG(Team-Opp),SoT(Team-Opp),Possession,HDP,Penalti,RedCard\n";
             
-            db.forEach(row => {
-                let r = [row.kategori, row.matchName, row.venue, row.score, row.xg, row.sot, row.poss, row.hdp, row.pen, row.redcard];
-                csvContent += r.join(",") + "\n";
-            });
+            let btnKirim = document.getElementById('btnKirim');
+            btnKirim.disabled = true;
 
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "Pro_SportBet_Data.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+            let nama = document.getElementById('namaInput').value;
+            let konten = document.getElementById('kontenInput').value;
+            let linkGambar = document.getElementById('linkGambarInput').value;
+            
+            if(linkGambar === "") linkGambar = null;
 
-        function exportTXT() {
-            if(db.length === 0) return alert('Data masih kosong!');
-            let txt = "=========================================\n";
-            txt += "    PRO SPORTBET DATA SCIENTIST LOG      \n";
-            txt += "=========================================\n\n";
-            
-            db.forEach(row => {
-                txt += `[${row.kategori.toUpperCase()}] ${row.matchName} (${row.venue})\n`;
-                txt += `> Skor : ${row.score} | HDP: ${row.hdp} | Poss: ${row.poss}\n`;
-                txt += `> xG   : ${row.xg} | SoT: ${row.sot}\n`;
-                if (row.pen !== "0-0" || row.redcard !== "Tidak Ada") {
-                    txt += `> Event: Penalti (${row.pen}), Kartu Merah (${row.redcard})\n`;
-                }
-                txt += `-----------------------------------------\n`;
-            });
+            let parentIdVal = document.getElementById('parent_id').value;
+            let parent_id = parentIdVal === "" ? null : parseInt(parentIdVal);
 
-            const blob = new Blob([txt], { type: 'text/plain' });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "Pro_SportBet_Analysis.txt";
-            link.click();
-        }
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                        "apikey": API_KEY,
+                        "Authorization": `Bearer ${API_KEY}`,
+                        "Content-Type": "application/json",
+                        "Prefer": "return=minimal"
+                    },
+                    body: JSON.stringify({ 
+                        nama: nama, 
+                        konten: konten, 
+                        parent_id: parent_id,
+                        gambar: linkGambar
+                    })
+                });
 
-        function exportJPG() {
-            if(db.length === 0) return alert('Data masih kosong!');
-            
-            // Sembunyikan elemen yang tidak perlu di screenshot
-            const hideElems = document.querySelectorAll('.print-hide');
-            hideElems.forEach(el => el.style.display = 'none');
-            
-            const element = document.getElementById("export-section");
-            
-            // Tambahkan sedikit padding untuk estetika ekspor
-            element.style.padding = "32px";
-            
-            html2canvas(element, { 
-                scale: 3, // Kualitas HD
-                backgroundColor: "#ffffff",
-                logging: false,
-                useCORS: true
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'Pro_SportBet_Table.jpg';
-                link.href = canvas.toDataURL('image/jpeg', 1.0);
-                link.click();
+                if (!response.ok) throw new Error("Gagal");
+
+                document.getElementById('kontenInput').value = ''; 
+                hapusGambar();
+                batalReply();
+                ambilTulisan(); 
                 
-                // Kembalikan seperti semula
-                hideElems.forEach(el => el.style.display = '');
-                element.style.padding = ""; 
-            });
-        }
+            } catch (error) {
+                alert("Error.");
+            } finally {
+                btnKirim.disabled = false;
+            }
+        });
 
-        window.onload = renderTable;
+        ambilTulisan();
     </script>
 </body>
 </html>
